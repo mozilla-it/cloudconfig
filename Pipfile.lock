@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "482c648ea4685b9f88a2b90cbb7c0a6662ebd905594de3c6b04b44c7188d18fb"
+            "sha256": "faa2fec788077e03841dbbe313f8e038e7924eaa28e7fabcafdf12ad8b9a5fdf"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -79,6 +79,10 @@
             ],
             "index": "pypi",
             "version": "==0.0.1"
+        },
+        "cloudsecrets": {
+            "git": "https://github.com/mozafrank/cloudsecrets.git",
+            "ref": "59ea1a1c14e47c86adaf95f35488c4c390a32880"
         },
         "coverage": {
             "hashes": [
