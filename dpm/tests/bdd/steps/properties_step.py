@@ -1,8 +1,10 @@
-from google.cloud import bigquery
+import time
+from datetime import datetime
 from unittest.mock import MagicMock, Mock
 import os
 import json
-os.environ["DYNAMIC_PROPERTIES_URL"] = "someurl"
+from google.cloud import bigquery
+os.environ["DYNAMIC_PROPERTIES_URL"] = "http://127.0.0.1:8000"
 from behave import *
 import requests
 import cloudsecrets.gcp
@@ -41,9 +43,7 @@ def service_id(context, p_service_id):
 
 @when("we call {prop_name}")
 def we_call(context, prop_name):
-    env = Env(env_id=context.env_id, service_id=context.service_id,
-              secret_name=context.secret_name, secret_keys=context.secret_keys, project=context.project)
-    context.property_value = env.get_property(prop_name)
+    context.property_value = Env.get_property(prop_name)
 
 
 @then("we receive {val}")
@@ -72,3 +72,17 @@ def secret_keys(context):
 @step("project is {p_project}")
 def project_is(context, p_project):
     context.project = p_project
+
+
+@step("I initialize the system")
+def initialize(context):
+    Env.initialize(env_id=context.env_id, service_id=context.service_id,
+              secret_name=context.secret_name, secret_keys=context.secret_keys, project=context.project)
+
+
+@given("keep running")
+def step_impl(context):
+    while True:
+        result = Env.get_property("BOX_USER_ID")
+        print(result, datetime.now())
+        time.sleep(1)

@@ -26,7 +26,9 @@ xlrd = "*"
 jsonmerge = "*"
 client = "*"
 psycopg2-binary = "*"
-cloudsecrets = { version = "*", git = "https://github.com/mozafrank/cloudsecrets.git", ref = "master"}
+cloudsecrets = {version = "*",git = "https://github.com/mozafrank/cloudsecrets.git",ref = "master"}
+schedule = "*"
+polling2 = "*"
 
 [requires]
 python_version = "3.7"

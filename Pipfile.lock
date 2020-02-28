@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "faa2fec788077e03841dbbe313f8e038e7924eaa28e7fabcafdf12ad8b9a5fdf"
+            "sha256": "51364e26f8805a8dd7903c586e39c9627ba57f9b1be94d4116609bdd7a434c98"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -61,10 +61,10 @@
         },
         "cfgv": {
             "hashes": [
-                "sha256:04b093b14ddf9fd4d17c53ebfd55582d27b76ed30050193c14e560770c5360eb",
-                "sha256:f22b426ed59cd2ab2b54ff96608d846c33dfb8766a67f0b4a6ce130ce244414f"
+                "sha256:1ccf53320421aeeb915275a196e23b3b8ae87dea8ac6698b1638001d4a486d53",
+                "sha256:c8e8f552ffcc6194f4e18dd4f68d9aef0c0d58ae7e7be8c82bee3c5e9edfa513"
             ],
-            "version": "==3.0.0"
+            "version": "==3.1.0"
         },
         "chardet": {
             "hashes": [
@@ -82,7 +82,7 @@
         },
         "cloudsecrets": {
             "git": "https://github.com/mozafrank/cloudsecrets.git",
-            "ref": "59ea1a1c14e47c86adaf95f35488c4c390a32880"
+            "ref": "d4145c91359836ad854fb1d4127033575c7c707e"
         },
         "coverage": {
             "hashes": [
@@ -386,13 +386,21 @@
             ],
             "version": "==0.13.1"
         },
-        "pre-commit": {
+        "polling2": {
             "hashes": [
-                "sha256:5295fb6d652a6c5e0b4636cd2c73183efdf253d45b657ce7367183134e806fe1",
-                "sha256:5387b53bb84ad9abc9b0845775dddd4e3243fd64cdcddaa6db28d3da6fbf06c2"
+                "sha256:b9febaf5ce7350ce63dba493c51e1dcff331f6fca874592a52c349fe6a1e1fb8",
+                "sha256:ddc7032ab4220f4477268e0fec1370ae070a92a680d82168cbaad0df3a87d6fe"
             ],
             "index": "pypi",
-            "version": "==2.1.0"
+            "version": "==0.4.5"
+        },
+        "pre-commit": {
+            "hashes": [
+                "sha256:09ebe467f43ce24377f8c2f200fe3cd2570d328eb2ce0568c8e96ce19da45fa6",
+                "sha256:f8d555e31e2051892c7f7b3ad9f620bd2c09271d87e9eedb2ad831737d6211eb"
+            ],
+            "index": "pypi",
+            "version": "==2.1.1"
         },
         "protobuf": {
             "hashes": [
@@ -575,6 +583,14 @@
             ],
             "version": "==4.0"
         },
+        "schedule": {
+            "hashes": [
+                "sha256:3f895a1036799a25ab9c335de917073e63cf8256920917e932777382f101f08f",
+                "sha256:f9fb5181283de4db6e701d476dd01b6a3dd81c38462a54991ddbb9d26db857c9"
+            ],
+            "index": "pypi",
+            "version": "==0.6.0"
+        },
         "six": {
             "hashes": [
                 "sha256:236bdbdce46e6e6a3d61a337c0f8b763ca1e8717c03b369e87a7ec7ce1319c0a",
@@ -605,10 +621,10 @@
         },
         "virtualenv": {
             "hashes": [
-                "sha256:08f3623597ce73b85d6854fb26608a6f39ee9d055c81178dc6583803797f8994",
-                "sha256:de2cbdd5926c48d7b84e0300dea9e8f276f61d186e8e49223d71d91250fbaebd"
+                "sha256:30ea90b21dabd11da5f509710ad3be2ae47d40ccbc717dfdd2efe4367c10f598",
+                "sha256:4a36a96d785428278edd389d9c36d763c5755844beb7509279194647b1ef47f1"
             ],
-            "version": "==20.0.4"
+            "version": "==20.0.7"
         },
         "wcwidth": {
             "hashes": [
