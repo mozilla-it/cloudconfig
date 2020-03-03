@@ -1,8 +1,8 @@
 # Created by jspiropulo at 2/19/20
 Feature: Get properties
 
-#  Background:
-#    Given mocks
+  Background:
+    Given mocks
 
   Scenario: Get properties BING_DEFAULT_GROSS_REVENUE_DENOMINATOR by env and service
     Given the env id is 224
