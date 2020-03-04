@@ -10,7 +10,7 @@ import threading
 
 class Env:
     local_properties = None
-    logger = None
+    logger = logging.getLogger(__name__)
     env_id = None
     service_id = None
     secret_name = None
@@ -21,7 +21,6 @@ class Env:
 
     @staticmethod
     def initialize(env_id: int, service_id: int, secret_name: str, secret_keys: List[str], project: str):
-        Env.logger = logging.getLogger(__name__)
         Env.env_id: int = env_id
         Env.service_id: int = service_id
         Env.secret_name: str = secret_name
@@ -74,6 +73,9 @@ class Polling:
 
     @staticmethod
     def call_refresh():
-        properties = Env.build_properties()
-        if properties is not None:
-            Env.local_properties = properties
+        try:
+            properties = Env.build_properties()
+            if properties is not None:
+                Env.local_properties = properties
+        except Exception as e:
+            Env.logger.warning("Could not build properties {}".format(e.args[0]))
