@@ -70,14 +70,6 @@ def secret_name(context, p_secret_name):
     context.secret_name = p_secret_name
 
 
-@step("secret_keys")
-def secret_keys(context):
-    table = context.table
-    context.secret_keys = list()
-    for r in table:
-        context.secret_keys.append(r["key"])
-
-
 @step("project is {p_project}")
 def project_is(context, p_project):
     context.project = p_project
@@ -86,7 +78,7 @@ def project_is(context, p_project):
 @step("I initialize the system")
 def initialize(context):
     Env.initialize(env_id=context.env_id, service_id=context.service_id, program_id=context.program_id,
-              secret_name=context.secret_name, secret_keys=context.secret_keys, project=context.project)
+              secret_name=context.secret_name, project=context.project)
 
 
 @given("keep running")
