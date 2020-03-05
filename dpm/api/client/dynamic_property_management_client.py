@@ -10,7 +10,7 @@ class DynamicPropertyManagementClient:
     URL_TOKEN = str(os.getenv("DYNAMIC_PROPERTIES_URL")) + "/token"
     TOKEN = None
 
-    def get_dynamic_properties(self, env_id: int, service_id: int) -> Dict[str, str]:
+    def get_dynamic_properties(self, env_id: int, service_id: int, program_id: int) -> Dict[str, str]:
         if env_id is None or service_id is None:
             return dict()
 
@@ -18,7 +18,7 @@ class DynamicPropertyManagementClient:
             self.TOKEN = self.get_token()
 
         result: Dict[str, str] = dict()
-        params = {"env_id": env_id, "service_id": service_id}
+        params = {"env_id": env_id, "service_id": service_id, "program_id": program_id}
         response = self._post_for_properties(params)
 
         loads: List = json.loads(response.text)

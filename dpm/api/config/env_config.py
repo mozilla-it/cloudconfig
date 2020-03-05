@@ -13,6 +13,7 @@ class Env:
     logger = logging.getLogger(__name__)
     env_id = None
     service_id = None
+    program_id = None
     secret_name = None
     secret_keys = None
     project = None
@@ -20,9 +21,10 @@ class Env:
     client = None
 
     @staticmethod
-    def initialize(env_id: int, service_id: int, secret_name: str, secret_keys: List[str], project: str):
+    def initialize(env_id: int, service_id: int, program_id: int, secret_name: str, secret_keys: List[str], project: str):
         Env.env_id: int = env_id
         Env.service_id: int = service_id
+        Env.program_id: int = program_id
         Env.secret_name: str = secret_name
         Env.secret_keys: List[str] = secret_keys
         Env.project: str = project
@@ -48,7 +50,7 @@ class Env:
     def build_properties():
         _secrets = dict(Secrets(Env.secret_name, project=Env.project))
         result: Dict[str, str] = \
-            Env.client.get_dynamic_properties(env_id=Env.env_id, service_id=Env.service_id)
+            Env.client.get_dynamic_properties(env_id=Env.env_id, service_id=Env.service_id, program_id=Env.program_id)
 
         for k in Env.secret_keys:
             assert k in _secrets.keys(), "Could not find key {}".format(k)

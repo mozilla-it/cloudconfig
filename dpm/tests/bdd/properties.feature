@@ -7,6 +7,7 @@ Feature: Get properties
   Scenario: Get properties BING_DEFAULT_GROSS_REVENUE_DENOMINATOR by env and service
     Given the env id is 224
     And the service id is 568
+    And the program id is 788
     And secret_name revenue-secrets
     And secret_keys
       | key      |
@@ -19,6 +20,7 @@ Feature: Get properties
   Scenario: Get properties boxAppSettings by env and service
     Given the env id is 224
     And the service id is 568
+    And the program id is 788
     And secret_name revenue-secrets
     And secret_keys
       | key      |
@@ -31,6 +33,7 @@ Feature: Get properties
   Scenario: Get properties BOX_USER_ID by env and service
     Given the env id is 224
     And the service id is 568
+    And the program id is 788
     And secret_name revenue-secrets
     And secret_keys
       | key      |
@@ -43,6 +46,7 @@ Feature: Get properties
   Scenario: Get properties PARTNER_MAPS_YANDEX by env and service
     Given the env id is 224
     And the service id is 568
+    And the program id is 788
     And secret_name revenue-secrets
     And secret_keys
       | key      |
@@ -55,6 +59,7 @@ Feature: Get properties
   Scenario: Get properties BOX_USER_ID and PARTNER_MAPS_YANDEX we only initialize once
     Given the env id is 224
     And the service id is 568
+    And the program id is 788
     And secret_name revenue-secrets
     And secret_keys
       | key      |
