@@ -1,43 +1,14 @@
 from typing import Dict, List
-import requests
-import json
-import os
-from retry import retry
-
+from cloudsecrets.gcp import Secrets
 
 class DynamicPropertyManagementClient:
-    URL = str(os.getenv("DYNAMIC_PROPERTIES_URL")) + "/get_properties"
-    URL_TOKEN = str(os.getenv("DYNAMIC_PROPERTIES_URL")) + "/token"
-    TOKEN = None
-
-    def get_dynamic_properties(self, env_id: int, service_id: int, program_id: int) -> Dict[str, str]:
-        if env_id is None or service_id is None:
-            return dict()
-
-        if self.TOKEN is None:
-            self.TOKEN = self.get_token()
-
-        result: Dict[str, str] = dict()
-        params = {"env_id": env_id, "service_id": service_id, "program_id": program_id}
-        response = self._post_for_properties(params)
-
-        loads: List = json.loads(response.text)
-        for l in loads:
-            result.update({l["key"]: l["value"]})
-
-        return result
-
-    @retry(ValueError, tries=3)
-    def _post_for_properties(self, params):
-        head = {'Authorization': 'Bearer ' + self.TOKEN}
-        response = requests.post(self.URL, data=json.dumps(params), headers=head)
-        if response.status_code not in [200, 201]:
-            self.TOKEN = self.get_token()
-            raise ValueError(response.text)
-
-        return response
-
-    def get_token(self) -> str:
-        data = {"username": os.getenv("USERNAME"), "password": os.getenv("PASSWORD")}
-        response = requests.post(self.URL_TOKEN, data=data)
-        return json.loads(response.text)["access_token"]
+    def __init__(self,*args,**kwargs):
+        self.service = kwargs.get('service',None)
+        self.program = kwargs.get('program',None)
+        self.polling_interval = kwargs.get('polling_interval', 0) 
+        if not self.program or not self.service:
+            raise Exception("Error: must provide service and program")
+        self.secret_resource = f"dpm-{self.service}-{self.program}-config"
+        self.properties = Secrets(self.secret_resource,polling_interval=self.polling_interval)
+    def get_dynamic_properties(self) -> Dict[str, str]:
+        return dict(self.properties)
