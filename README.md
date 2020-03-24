@@ -1,21 +1,18 @@
+# How to install:
 
-
-### How to install:
-
-for pipenv
+For pipenv:
 
 ```
 [packages]
 dynamic-property-management-module = { version = "*", git = "https://github.com/mozilla-it/dynamic-property-management-module.git", ref = "master"}
-
 ```
 
-### Must be set:
+# Must be set:
 These environmental variables must be set.
 * GOOGLE_APPLICATION_CREDENTIALS
 * GCP_PROJECT
 
-### Example Usage:
+# Example Usage:
 
 ```
 **[Pulling Properties]**
