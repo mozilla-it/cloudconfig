@@ -33,6 +33,15 @@ property_value = Env.get_property(<property_name/>)
 secret_value = Env.get_secret(<secret_name/>)
 ```
 
+```
+>>> from dpm.api import Env
+>>> Env.initialize("LOOK AT THE EXAMPLE ABOVE")
+>>> Env.get_property("property_key")
+'property_value'
+>>> Env.get_secret("secret_key")
+'secret_value'
+```
+
 # Managing Properties and Secrets:
 In order to create/delete/update/read properties or secrets go here:
 https://github.com/mozilla-it/cloudsecrets
