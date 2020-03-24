@@ -15,8 +15,8 @@ These environmental variables must be set.
 # Example Usage:
 
 ```
-**[Pulling Properties]**
-
+**[Initialization should only happen once. The polling 
+values will determine if additional polls will be performed.]**
 Env.initialize(
                dpm_service_name = <service name/>, 
                dpm_program_name = <program_name/>,
@@ -25,17 +25,16 @@ Env.initialize(
                secrets_polling_interval = <secrets_polling_interval/>,
                project = <project/>
               )
+
+**[Pulling Properties]**
 property_value = Env.get_property(<property_name/>)
 
 **[Pulling Secrets]**
-
-Env.initialize(
-               dpm_service_name = <service name/>, 
-               dpm_program_name = <program_name/>,
-               dpm_polling_interval = <dpm_polling_interval/>,
-               secrets_name = <secrets_name/>, 
-               secrets_polling_interval = <secrets_polling_interval/>,
-               project = <project/>
-              )
 secret_value = Env.get_secret(<secret_name/>)
 ```
+
+# Managing Properties and Secrets:
+In order to create/delete/update/read properties or secrets go here:
+https://github.com/mozilla-it/cloudsecrets
+
+You'll have to follow the instructions on how to install and use the CLI tool.
