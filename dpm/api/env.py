@@ -37,7 +37,11 @@ class Env:
         if Env.initialized is False:
             Env.logger.error("Trying to get_property without initialization")
             raise Exception("You must invoke Env.initialize with the appropriate parameters")
-        return Env.dpm_client.get_dynamic_properties().get(key)
+
+        try:
+            return json.loads(Env.dpm_client.get_dynamic_properties().get(key)).get("value")
+        except:
+            return Env.dpm_client.get_dynamic_properties().get(key)
 
     @staticmethod
     def get_secret(key: str) -> str:

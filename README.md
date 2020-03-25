@@ -1,18 +1,18 @@
-# How to install:
+# How to install
 
-For pipenv:
+For pipenv
 
 ```
 [packages]
 dynamic-property-management-module = { version = "*", git = "https://github.com/mozilla-it/dynamic-property-management-module.git", ref = "master"}
 ```
 
-# Must be set:
+# Must be set
 These environmental variables must be set.
 * GOOGLE_APPLICATION_CREDENTIALS
 * GCP_PROJECT
 
-# Example Usage:
+# Example Usage
 
 ```
 **[Initialization should only happen once. The polling 
@@ -42,7 +42,16 @@ secret_value = Env.get_secret(<secret_name/>)
 'secret_value'
 ```
 
-# Managing Properties and Secrets:
+# How to Add a Properties and Secrets
+
+To add properties there is a specific naming convention for the properties blob in secret manager:
+```
+dpm-<the name of the service/>-<the name of the program/>-config
+Example:
+dpm-integrations-intacct-config
+```
+
+# Managing Properties and Secrets
 In order to create/delete/update/read properties or secrets go here:
 https://github.com/mozilla-it/cloudsecrets
 
