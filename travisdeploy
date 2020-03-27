@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mkdir ~/.docker
+
+docker build -t $IMG .

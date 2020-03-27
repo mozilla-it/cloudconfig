@@ -16,4 +16,4 @@ jobs:
   include:
     - stage: Unit Tests
       script:
-        - python3 setup.py build
+      - ./travisdeploy
