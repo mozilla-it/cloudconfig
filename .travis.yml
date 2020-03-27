@@ -12,8 +12,5 @@ cache:
     - /home/travis/.nvm
     - /home/travis/.cache/pip
 
-jobs:
-  include:
-    - stage: Unit Tests
-      script:
-      - ./travisdeploy
+script:
+- ./travisdeploy
