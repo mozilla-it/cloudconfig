@@ -39,7 +39,8 @@ class Env:
             raise Exception("You must invoke Env.initialize with the appropriate parameters")
 
         try:
-            return json.loads(Env.dpm_client.get_dynamic_properties().get(key)).get("value")
+            #return json.loads(Env.dpm_client.get_dynamic_properties().get(key)).get("value")
+            return Env.dpm_client.get_dynamic_properties().get(key).get("value")
         except:
             return Env.dpm_client.get_dynamic_properties().get(key)
 
