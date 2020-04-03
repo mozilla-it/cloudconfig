@@ -1,4 +1,4 @@
-from dpm.api.clients import DynamicPropertyManagementClient, SecretsClient
+from dpm.api.clients import DynamicPropertyManagementClient, SecretsClient, StateClient
 import logging
 import json
 
@@ -24,6 +24,8 @@ class Env:
         Env.dpm_polling_interval = dpm_polling_interval
         Env.dpm_client = DynamicPropertyManagementClient(
             service_name=dpm_service_name, program_name=dpm_program_name, polling_interval=dpm_polling_interval, project=project)
+        Env.state_client = StateClient(
+            service_name=dpm_service_name, program_name=dpm_program_name, polling_interval=dpm_polling_interval, project=project)
         Env.secrets_client = SecretsClient(secrets_name=secrets_name, polling_interval=secrets_polling_interval, project=project)
         Env.initialized = True
         Env.logger.info(f"Initializing with dpm_service_name={dpm_service_name}, "
@@ -42,6 +44,22 @@ class Env:
             return Env.dpm_client.get_dynamic_properties().get(key).get("value")
         except:
             return Env.dpm_client.get_dynamic_properties().get(key)
+
+    @staticmethod
+    def get_state(key: str) -> str:
+        if Env.initialized is False:
+            Env.logger.error("Trying to get_state without initialization")
+            raise Exception("You must invoke Env.initialize with the appropriate parameters")
+
+        return Env.state_client.get_state().get(key)
+
+    @staticmethod
+    def set_state(key: str, value) -> str:
+        if Env.initialized is False:
+            Env.logger.error("Trying to set_state without initialization")
+            raise Exception("You must invoke Env.initialize with the appropriate parameters")
+
+        return Env.state_client.set_state(key, value)
 
     @staticmethod
     def get_secret(key: str) -> str:
