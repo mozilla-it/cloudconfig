@@ -9,7 +9,6 @@ class DynamicPropertyManagementClient:
         def on_snapshot(doc_snapshot, changes, read_time):
             for change in changes:
                 self.properties = change.document.to_dict()
-            #print("read_time: {}".format(read_time))
 
         self.service = service_name
         self.program = program_name
@@ -18,10 +17,8 @@ class DynamicPropertyManagementClient:
             raise Exception("Error: must provide service name and program name")
         self.doc_path = f"dpm-configs/{self.service}-{self.program}"
         self.firestore_client = firestore.Client()
-        #self.doc_ref = self.firestore_client.collection(u'dpm-configs').document(self.doc_path)
         self.doc_ref = self.firestore_client.document(self.doc_path)
         doc_watch = self.doc_ref.on_snapshot(on_snapshot)
-        #self.properties = Secrets(self.secret_resource, polling_interval=self.polling_interval, project=project)
 
     def get_dynamic_properties(self) -> Dict[str, str]:
         return dict(self.properties)
