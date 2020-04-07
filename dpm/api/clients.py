@@ -1,20 +1,39 @@
 from typing import Dict
 from cloudsecrets.gcp import Secrets
+from google.cloud import firestore
 
 
 class DynamicPropertyManagementClient:
 
     def __init__(self, service_name: str, program_name: str, project: str, polling_interval: int = 0):
+        def on_snapshot(doc_snapshot, changes, read_time):
+            for change in changes:
+                self.properties = change.document.to_dict()
+
         self.service = service_name
         self.program = program_name
         self.polling_interval = polling_interval
         if not self.program or not self.service:
             raise Exception("Error: must provide service name and program name")
-        self.secret_resource = f"dpm-{self.service}-{self.program}-config"
-        self.properties = Secrets(self.secret_resource, polling_interval=self.polling_interval, project=project)
+        if type(self).__name__ == "DynamicPropertyManagementClient":
+            self.doc_path = f"dpm-configs/{self.service}-{self.program}"
+        elif type(self).__name__ == "StateClient":
+            self.doc_path = f"app-state/{self.service}-{self.program}"
+        self.firestore_client = firestore.Client()
+        self.doc_ref = self.firestore_client.document(self.doc_path)
+        doc_watch = self.doc_ref.on_snapshot(on_snapshot)
 
     def get_dynamic_properties(self) -> Dict[str, str]:
         return dict(self.properties)
+
+
+class StateClient(DynamicPropertyManagementClient):
+
+    def get_state(self) -> Dict[str, str]:
+        return self.get_dynamic_properties()
+
+    def set_state(self, key, value):
+        return self.firestore_client.document(self.doc_path).set({key: value}, merge=True)
 
 
 class SecretsClient:

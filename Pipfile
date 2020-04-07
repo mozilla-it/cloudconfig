@@ -30,6 +30,7 @@ cloudsecrets = {version = "*",git = "https://github.com/mozilla-it/cloudsecrets.
 schedule = "*"
 polling2 = "*"
 secrets = "*"
+google-cloud-firestore = "*"
 
 [requires]
 python_version = "3.7"

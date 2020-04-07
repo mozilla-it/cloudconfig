@@ -20,7 +20,7 @@ values will determine if additional polls will be performed.]**
 Env.initialize(
                dpm_service_name = <service name/>, 
                dpm_program_name = <program_name/>,
-               dpm_polling_interval = <dpm_polling_interval/>,
+               dpm_polling_interval = <dpm_polling_interval/>,  # IGNORED in the Firestore impl
                secrets_name = <secrets_name/>, 
                secrets_polling_interval = <secrets_polling_interval/>,
                project = <project/>
@@ -34,7 +34,7 @@ secret_value = Env.get_secret(<secret_name/>)
 ```
 
 ```
->>> from dpm.api import Env
+>>> from dpm.api.env import Env
 >>> Env.initialize("LOOK AT THE EXAMPLE ABOVE")
 >>> Env.get_property("property_key")
 'property_value'
@@ -48,7 +48,7 @@ To add properties there is a specific naming convention for the properties blob 
 ```
 dpm-<the name of the service/>-<the name of the program/>-config
 Example:
-dpm-integrations-intacct-config
+dpm-data-integrations-intacct-config
 ```
 
 # Managing Properties and Secrets
