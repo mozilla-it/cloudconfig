@@ -1,6 +1,5 @@
-from dpm.api.clients import DynamicPropertyManagementClient, SecretsClient, StateClient
+from dpm.api.clients import DynamicPropertyManagementClient, SecretsClient
 import logging
-import json
 
 
 class Env:
@@ -8,7 +7,6 @@ class Env:
     dpm_service_name: str = None
     dpm_program_name: str = None
     secrets_name: str = None
-    dpm_polling_interval: int = 0
     secrets_polling_interval: int = 0
     dpm_client: DynamicPropertyManagementClient = None
     secrets_client: SecretsClient = None
@@ -16,22 +14,18 @@ class Env:
 
     @staticmethod
     def initialize(dpm_service_name: str, dpm_program_name: str, secrets_name: str, project: str,
-                   dpm_polling_interval: int = 300, secrets_polling_interval: int = 0):
+                   secrets_polling_interval: int = 0):
 
         Env.dpm_service_name = dpm_service_name
         Env.dpm_program_name = dpm_program_name
         Env.secrets_name = secrets_name
-        Env.dpm_polling_interval = dpm_polling_interval
         Env.dpm_client = DynamicPropertyManagementClient(
-            service_name=dpm_service_name, program_name=dpm_program_name, polling_interval=dpm_polling_interval, project=project)
-        Env.state_client = StateClient(
-            service_name=dpm_service_name, program_name=dpm_program_name, polling_interval=dpm_polling_interval, project=project)
+            service_name=dpm_service_name, program_name=dpm_program_name)
         Env.secrets_client = SecretsClient(secrets_name=secrets_name, polling_interval=secrets_polling_interval, project=project)
         Env.initialized = True
         Env.logger.info(f"Initializing with dpm_service_name={dpm_service_name}, "
                         f"dpm_program_name={dpm_program_name}, "
                         f"secrets_name={secrets_name}, project={project}, "
-                        f"dpm_polling_interval={dpm_polling_interval}, "
                         f"secrets_polling_interval={secrets_polling_interval}")
 
     @staticmethod
@@ -44,22 +38,6 @@ class Env:
             return Env.dpm_client.get_dynamic_properties().get(key).get("value")
         except:
             return Env.dpm_client.get_dynamic_properties().get(key)
-
-    @staticmethod
-    def get_state(key: str) -> str:
-        if Env.initialized is False:
-            Env.logger.error("Trying to get_state without initialization")
-            raise Exception("You must invoke Env.initialize with the appropriate parameters")
-
-        return Env.state_client.get_state().get(key)
-
-    @staticmethod
-    def set_state(key: str, value) -> str:
-        if Env.initialized is False:
-            Env.logger.error("Trying to set_state without initialization")
-            raise Exception("You must invoke Env.initialize with the appropriate parameters")
-
-        return Env.state_client.set_state(key, value)
 
     @staticmethod
     def get_secret(key: str) -> str:
