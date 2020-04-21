@@ -40,6 +40,14 @@ class Env:
             return Env.dpm_client.get_dynamic_properties().get(key)
 
     @staticmethod
+    def update_property(key: str, value: str):
+        if Env.initialized is False:
+            Env.logger.error("Trying to get_property without initialization")
+            raise Exception("You must invoke Env.initialize with the appropriate parameters")
+
+        Env.dpm_client.update_property(key=key, value=value)
+
+    @staticmethod
     def get_secret(key: str) -> str:
         if Env.initialized is False:
             Env.logger.error("Trying to get_secret without initialization")

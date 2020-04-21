@@ -126,10 +126,8 @@ def we_get_val(self, result):
     assert self.result == result
 
 
-@given("test this poll properties {prop_poll} and poll secrets {secrets_poll}")
-def testing(context, prop_poll, secrets_poll):
-    Env.initialize(dpm_service_name="data-integrations", dpm_program_name="intacct",
-                   secrets_name="data-integrations-secrets", secrets_polling_interval=int(secrets_poll), project="imposing-union-227917")
+@given("test this")
+def testing(context):
     counter = 0
     while True:
         property_value = Env.get_property("USD")
@@ -138,3 +136,15 @@ def testing(context, prop_poll, secrets_poll):
         print(f"{counter} : property={property_value} : secret={secret_value}")
         time.sleep(1)
 
+
+@given("I update {key} with {value}")
+def step_impl(context, key, value):
+    Env.update_property(key, value)
+
+
+@given("I start")
+def step_impl(context):
+    # Env.initialize(dpm_service_name="data-integrations", dpm_program_name="intacct",
+    #        secrets_name="data-integrations-secrets", secrets_polling_interval=10, project="dp2-stage")
+    Env.initialize(dpm_service_name="data-integrations", dpm_program_name="intacct",
+           secrets_name="data-integrations-secrets", secrets_polling_interval=10, project="imposing-union-227917")
