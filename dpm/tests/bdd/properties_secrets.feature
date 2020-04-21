@@ -37,4 +37,6 @@ Feature: Read properties from GCP secrets manager
 
 
 #  Scenario: test
-#    Given test this poll properties 1 and poll secrets 1
+#    Given I start
+#    Given I update USD with 1
+#    Given test this
