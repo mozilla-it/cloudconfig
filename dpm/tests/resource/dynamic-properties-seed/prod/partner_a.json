@@ -1,0 +1,454 @@
+{
+	"error_codes_folder": {
+		"value" : "error_codes",
+		"description" : "This is the folder were we store the json error payloads that get sent to stackdriver"
+	},
+	"INTACCT_API_RETRIES": {
+		"value": "3",
+		"description": "The number of times we will re-try calling intacct for specific entity data if we receive 0 records. From time to time this API will return 0 even though we have records. This is an issue with the Intacct API"
+	},
+	"INTACCT_API_TIME_BETWEEN_RETRIES": {
+		"value": "30",
+		"description": "If we are retrying this is how long we'll sleep, in seconds between calls"
+	},
+	"START_TO_READ_FROM_DATE": {
+		"value" : "11/12/2012",
+		"description" : "The PO report pulls all records starting from this date"
+	},
+	"USD": {
+		"value" : "1",
+		"description" : ""
+	},
+	"CAD": {
+		"value" : "0.7648",
+		"description" : ""
+	},
+	"GBP": {
+		"value" : "1.3074",
+		"description" : ""
+	},
+	"EUR": {
+		"value" : "1.1104",
+		"description" : ""
+	},
+	"NZD": {
+		"value" : "0.6616",
+		"description" : ""
+	},
+	"AUD": {
+		"value" : "0.6871",
+		"description" : ""
+	},
+	"DKK": {
+		"value" : "0.1486",
+		"description" : ""
+	},
+	"TWD": {
+		"value" : "0.0333",
+		"description" : ""
+	},
+	"5230": {
+		"value" : "Drew Wilson",
+		"description" : "5230 - Gecko Platform"
+	},
+	"5210": {
+		"value" : "Drew Wilson",
+		"description" : "5210 - Gecko Platform Initiatives"
+	},
+	"5240": {
+		"value" : "Drew Wilson",
+		"description" : "5240 - Engineering Efficiency"
+	},
+	"5010": {
+		"value" : "Drew Wilson",
+		"description" : "5010 - Advanced Technology"
+	},
+	"5200": {
+		"value" : "Drew Wilson",
+		"description" : "5200 - Firefox Web Platform"
+	},
+	"5110": {
+		"value" : "Drew Wilson",
+		"description" : "5110 - Desktop Privacy & Security"
+	},
+	"5850": {
+		"value" : "Drew Wilson",
+		"description" : "5850 - Mozilla Product Discovery"
+	},
+	"5220": {
+		"value" : "Drew Wilson",
+		"description" : "5220 - Web Futures"
+	},
+	"5900": {
+		"value" : "Drew Wilson",
+		"description" : "5900 - Program Management"
+	},
+	"5100": {
+		"value" : "Drew Wilson",
+		"description" : "5100 - Desktop Product Development"
+	},
+	"5400": {
+		"value" : "Drew Wilson",
+		"description" : "5400 - Mobile"
+	},
+	"5000": {
+		"value" : "Drew Wilson",
+		"description" : "5000 - Firefox"
+	},
+	"5650": {
+		"value" : "Drew Wilson",
+		"description" : "5650 - Firefox Engineering Operations"
+	},
+	"5120": {
+		"value" : "Drew Wilson",
+		"description" : "5120 - Desktop Ecosystem & Experimentation"
+	},
+	"5700": {
+		"value" : "Drew Wilson",
+		"description" : "5700 - User Experience"
+	},
+	"1013": {
+		"value" : "Nishanth Billa",
+		"description" : "1013 - Advanced Development"
+	},
+	"1015": {
+		"value" : "Nishanth Billa",
+		"description" : "1015 - Experiences & Design"
+	},
+	"1010": {
+		"value" : "Nishanth Billa",
+		"description" : "1010 - Emerging Technologies"
+	},
+	"1014": {
+		"value" : "Nishanth Billa",
+		"description" : "1014 - Voice"
+	},
+	"1012": {
+		"value" : "Nishanth Billa",
+		"description" : "1012 - Developer Outreach"
+	},
+	"1011": {
+		"value" : "Nishanth Billa",
+		"description" : "1011 - Mixed Reality"
+	},
+	"1004": {
+		"value" : "Winnie Aoieong",
+		"description" : "1004 - CEO Strategic Reserve"
+	},
+	"1005": {
+		"value" : "Winnie Aoieong",
+		"description" : "1005 - Corp Consolidation & Elimination"
+	},
+	"1000": {
+		"value" : "Winnie Aoieong",
+		"description" : "1000 - Office of CEO"
+	},
+	"1001.01": {
+		"value" : "Winnie Aoieong",
+		"description" : "1001.01 - OOTC, MOSS Grants"
+	},
+	"1001": {
+		"value" : "Winnie Aoieong",
+		"description" : "1001 - Office of Chair"
+	},
+	"1002": {
+		"value" : "Winnie Aoieong",
+		"description" : "1002 - State of the Internet"
+	},
+	"1180": {
+		"value" : "Michael Standifer",
+		"description" : "1180 - Customer Success"
+	},
+	"1150": {
+		"value" : "Michael Standifer",
+		"description" : "1150 - Business Development"
+	},
+	"1320": {
+		"value" : "Michael Standifer",
+		"description" : "1320 - People Operations"
+	},
+	"1120": {
+		"value" : "Michael Standifer",
+		"description" : "1120 - Legal"
+	},
+	"1340": {
+		"value" : "Michael Standifer",
+		"description" : "1340 - People"
+	},
+	"1400": {
+		"value" : "Michael Standifer",
+		"description" : "1400 - Information Technology Services"
+	},
+	"1214": {
+		"value" : "Michael Standifer",
+		"description" : "1214 - Procurement"
+	},
+	"1211": {
+		"value" : "Michael Standifer",
+		"description" : "1211 - Accounting"
+	},
+	"1430": {
+		"value" : "Michael Standifer",
+		"description" : "1430 - End User Services (EUS)"
+	},
+	"1250": {
+		"value" : "Michael Standifer",
+		"description" : "1250 - Facilities"
+	},
+	"1330": {
+		"value" : "Michael Standifer",
+		"description" : "1330 - Total Rewards"
+	},
+	"1420": {
+		"value" : "Michael Standifer",
+		"description" : "1420 - Enterprise Information Security (EIS)"
+	},
+	"1145": {
+		"value" : "Michael Standifer",
+		"description" : "1145 - Data Science & Analytics"
+	},
+	"1410": {
+		"value" : "Michael Standifer",
+		"description" : "1410 - Infrastructure Eng and Ops (Infra)"
+	},
+	"1003": {
+		"value" : "Michael Standifer",
+		"description" : "1003 - Office of CIO"
+	},
+	"1440": {
+		"value" : "Michael Standifer",
+		"description" : "1440 - Enterprise Applications and Services (EApps)"
+	},
+	"1256": {
+		"value" : "Michael Standifer",
+		"description" : "1256 - Environment Sustainability"
+	},
+	"1020": {
+		"value" : "Michael Standifer",
+		"description" : "1020 - Internal Comms"
+	},
+	"1100": {
+		"value" : "Michael Standifer",
+		"description" : "1100 - Global Policy"
+	},
+	"1310": {
+		"value" : "Michael Standifer",
+		"description" : "1310 - D&I"
+	},
+	"1213": {
+		"value" : "Michael Standifer",
+		"description" : "1213 - Payroll"
+	},
+	"1350": {
+		"value" : "Michael Standifer",
+		"description" : "1350 - Recruiting"
+	},
+	"1212": {
+		"value" : "Michael Standifer",
+		"description" : "1212 - Finance"
+	},
+	"1450": {
+		"value" : "Michael Standifer",
+		"description" : "1450 - Portfolio and Program Management Office"
+	},
+	"1101": {
+		"value" : "Michael Standifer",
+		"description" : "1101 - Security and Trust"
+	},
+	"1210": {
+		"value" : "Michael Standifer",
+		"description" : "1210 - Finance and Accounting"
+	},
+	"1170.4": {
+		"value" : "Nicholas Grammater",
+		"description" : "1170.4 - Editorial"
+	},
+	"1170.6": {
+		"value" : "Nicholas Grammater",
+		"description" : "1170.6 - Community"
+	},
+	"1170.9": {
+		"value" : "Nicholas Grammater",
+		"description" : "1170.9 - Design"
+	},
+	"1170": {
+		"value" : "Nicholas Grammater",
+		"description" : "1170 - Read It Later"
+	},
+	"2300": {
+		"value" : "Nicholas Grammater",
+		"description" : "2300 - Lifecycle Marketing"
+	},
+	"1170.2": {
+		"value" : "Nicholas Grammater",
+		"description" : "1170.2 - Finance \/ Accounting"
+	},
+	"2400": {
+		"value" : "Nicholas Grammater",
+		"description" : "2400 - Brand Engagement"
+	},
+	"1170.5": {
+		"value" : "Nicholas Grammater",
+		"description" : "1170.5 - Marketing"
+	},
+	"1170.8": {
+		"value" : "Nicholas Grammater",
+		"description" : "1170.8 - Product"
+	},
+	"1006": {
+		"value" : "Nicholas Grammater",
+		"description" : "1006 - Emerging Markets"
+	},
+	"2000": {
+		"value" : "Nicholas Grammater",
+		"description" : "2000 - General Marketing"
+	},
+	"1170.3": {
+		"value" : "Nicholas Grammater",
+		"description" : "1170.3 - Revenue & Sales"
+	},
+	"2500": {
+		"value" : "Nicholas Grammater",
+		"description" : "2500 - Marketing Operations"
+	},
+	"1007": {
+		"value" : "Nicholas Grammater",
+		"description" : "1007 - New Markets"
+	},
+	"1170.7": {
+		"value" : "Nicholas Grammater",
+		"description" : "1170.7 - Engineering"
+	},
+	"1170.1": {
+		"value" : "Nicholas Grammater",
+		"description" : "1170.1 - G&A"
+	},
+	"2700": {
+		"value" : "Nicholas Grammater",
+		"description" : "2700 - Product Marketing"
+	},
+	"2200": {
+		"value" : "Nicholas Grammater",
+		"description" : "2200 - Mar Com"
+	},
+	"dtd_version": {
+		"value" : "3.0",
+		"description" : "The version of the Intacct API we are using"
+	},
+	"url": {
+		"value" : "https:\/\/api.intacct.com\/ia\/xml\/xmlgw.phtml",
+		"description" : "This is the URL that hosts the Intacct API"
+	},
+	"timeout": {
+		"value" : "30",
+		"description" : "This is how long we will wait for a response from the Intacct service"
+	},
+	"include_whitespace": {
+		"value" : "false",
+		"description" : "This is a parameter is use to parse the base Intacct XML"
+	},
+	"sender_id": {
+		"value" : "MOZ Corp2",
+		"description" : "The sender id we are using to communicate with Intacct"
+	},
+	"user_id": {
+		"value" : "datateam",
+		"description" : "Our User id with Intacct"
+	},
+	"unique_id": {
+		"value" : "false",
+		"description" : "This is a parameter is use to parse the base Intacct XML"
+	},
+	"sleep_time_between_inserts": {
+		"value" : "3",
+		"description" : "This is how long we wait between inserts. This gives the Intacct API a break, so our calls dont saturate their API"
+	},
+	"destination": {
+		"value" : "intacct.open_po_{}",
+		"description" : "This is the name of the destination table. We use a view on top of the destination table so tableau, the client of this data is not affected by our updates. The pattern follows a blue green deployment strategy. We write to the table the view is not pointing to and then after the inserts are complete, we switch the view to point to the new table and delete the old table. The process repeats every time this job runs. We replace the entire table every time we run. There is no need for collecting deltas."
+	},
+	"SF": {
+		"value" : "USD",
+		"description" : ""
+	},
+	"Data Center - MDC1": {
+		"value" : "USD",
+		"description" : ""
+	},
+	"Data Center - MDC2": {
+		"value" : "USD",
+		"description" : ""
+	},
+	"Denver": {
+		"value" : "USD",
+		"description" : ""
+	},
+	"Evelyn": {
+		"value" : "USD",
+		"description" : ""
+	},
+	"Pocket": {
+		"value" : "USD",
+		"description" : ""
+	},
+	"Portland": {
+		"value" : "USD",
+		"description" : ""
+	},
+	"Belgium": {
+		"value" : "EUR",
+		"description" : ""
+	},
+	"Denmark": {
+		"value" : "EUR",
+		"description" : ""
+	},
+	"France": {
+		"value" : "EUR",
+		"description" : ""
+	},
+	"Germany": {
+		"value" : "EUR",
+		"description" : ""
+	},
+	"Toronto": {
+		"value" : "CAD",
+		"description" : ""
+	},
+	"UK": {
+		"value" : "GBP",
+		"description" : ""
+	},
+	"Vancouver": {
+		"value" : "CAD",
+		"description" : ""
+	},
+	"Netherlands": {
+		"value" : "EUR",
+		"description" : ""
+	},
+	"Spain": {
+		"value" : "EUR",
+		"description" : ""
+	},
+	"Australia": {
+		"value" : "AUD",
+		"description" : ""
+	},
+	"New Zealand": {
+		"value" : "NZD",
+		"description" : ""
+	},
+	"Taiwan": {
+		"value" : "TWD",
+		"description" : ""
+	},
+	"Chicago": {
+		"value" : "USD",
+		"description" : ""
+	},
+	"user_agent": {
+		"value" : "pyintacct-0.0.8",
+		"description" : ""
+	}
+}
