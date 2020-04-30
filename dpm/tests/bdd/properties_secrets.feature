@@ -25,6 +25,12 @@ Feature: Read properties from GCP secrets manager
     When we read property user_agent
     Then we get val pyintacct-0.0.8
 
+#  Scenario: Update property "user_agent"
+#    Given this exists user_agent = pyintacct-0.0.8
+#    When I update user_agent = pyintacct
+#    When we read property user_agent
+#    Then we get val pyintacct
+
   Scenario: Get secret "intacct_secret"
     Given this exists intacct_secret = GGJHGJHIUY
     When we read secret intacct_secret

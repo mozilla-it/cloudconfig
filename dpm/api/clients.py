@@ -1,7 +1,7 @@
 from typing import Dict
-from cloudsecrets.gcp import Secrets
+import cloudsecrets.gcp
 from google.cloud import firestore
-import json
+
 
 class DynamicPropertyManagementClient:
     properties: Dict[str, str] = dict()
@@ -24,8 +24,17 @@ class DynamicPropertyManagementClient:
     def get_dynamic_properties(self) -> Dict[str, str]:
         return dict(self.properties)
 
-    def update_property(self, key: str, value: str):
-        self.doc_ref.update({u''+key+'': u''+value+''})
+    def update_property(self, key: str, value):
+        doc = self.doc_ref.get().to_dict()
+        doc.update({key: value})
+        self.doc_ref.set(doc)
+
+    def insert_property(self, key: str, value):
+        doc = self.doc_ref.get().to_dict()
+        if doc.get(key) is None:
+            doc.update({key: value})
+
+        self.doc_ref.set(doc)
 
 
 class SecretsClient:
@@ -35,7 +44,7 @@ class SecretsClient:
         self.polling_interval = polling_interval
         if not self.secrets_name:
             raise Exception("Error: must secret_name")
-        self.secrets = Secrets(self.secrets_name, polling_interval=self.polling_interval, project=project)
+        self.secrets = cloudsecrets.gcp.Secrets(self.secrets_name, polling_interval=self.polling_interval, project=project)
 
     def get_secret(self, key: str) -> str:
         return dict(self.secrets).get(key)

@@ -137,14 +137,14 @@ def testing(context):
         time.sleep(1)
 
 
-@given("I update {key} with {value}")
-def step_impl(context, key, value):
-    Env.update_property(key, value)
-
-
 @given("I start")
-def step_impl(context):
+def start(context):
     # Env.initialize(dpm_service_name="data-integrations", dpm_program_name="intacct",
     #        secrets_name="data-integrations-secrets", secrets_polling_interval=10, project="dp2-stage")
     Env.initialize(dpm_service_name="data-integrations", dpm_program_name="intacct",
            secrets_name="data-integrations-secrets", secrets_polling_interval=10, project="imposing-union-227917")
+
+
+@when("I update {key} = {value}")
+def step_impl(context, key, value):
+    Env.update_property(key, value)
