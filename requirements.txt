@@ -10,7 +10,6 @@ cffi==1.14.0
 cfgv==3.1.0
 chardet==3.0.4
 client==0.0.1
-cloudsecrets@git+https://github.com/mozilla-it/cloudsecrets.git@master#egg=cloudsecrets
 configobj==5.0.6
 coverage==5.0.4
 cryptography==2.9
@@ -88,3 +87,4 @@ virtualenv==20.0.16
 wcwidth==0.1.9
 xlrd==1.2.0
 zipp==3.1.0
+cloudsecrets@git+https://github.com/mozilla-it/cloudsecrets.git@master#egg=cloudsecrets
