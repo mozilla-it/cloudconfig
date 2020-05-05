@@ -1,3 +1,5 @@
+from typing import Dict
+
 import dpm.api.clients
 import logging
 
@@ -35,15 +37,25 @@ class Env:
                             f"secrets_polling_interval={secrets_polling_interval}")
 
     @staticmethod
-    def get_property(key: str) -> str:
+    def get_property(key: str):
         if Env.dpm_initialized is False:
             Env.logger.error("Trying to get_property without initialization")
             raise Exception("You must invoke Env.initialize with the appropriate parameters")
 
-        try:
-            return Env.dpm_client.get_dynamic_properties().get(key).get("value")
-        except:
-            return Env.dpm_client.get_dynamic_properties().get(key)
+        keys = Env.dpm_client.get_dynamic_properties().keys()
+
+        if key in keys:
+            property_val = Env.dpm_client.get_dynamic_properties().get(key)
+            if isinstance(property_val, Dict):
+                dict_keys = property_val.keys()
+                if "value" in dict_keys:
+                    return property_val.get("value")
+
+                return property_val
+
+            return property_val
+
+        raise Exception(f"{key} not found!")
 
     @staticmethod
     def update_property(key: str, value):
