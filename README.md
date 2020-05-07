@@ -12,6 +12,8 @@ These environmental variables must be set.
 * GOOGLE_APPLICATION_CREDENTIALS
 * GCP_PROJECT
 
+***Be sure to create a separate service account for separate deployments of this module to limit a credential leak blast radius!***
+
 # Example Usage
 
 ```
