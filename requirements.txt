@@ -3,8 +3,6 @@ cloudsecrets@git+https://github.com/mozilla-it/cloudsecrets.git@master#egg=cloud
 google-cloud-logging
 google-cloud-secret-manager
 google-resumable-media
-googleapis-common-protos
 jsonmerge
 pyjson
 PyYAML
-s3transfer
