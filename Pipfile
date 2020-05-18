@@ -3,8 +3,16 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
-[packages]
+[dev-packages]
+mock = "==3.0.5"
+mockito = "==1.1.1"
+pre-commit = "*"
+pytest = "==5.0.1"
+pytest-cov = "==2.7.1"
+pytest-mock = "==1.10.4"
 behave = "*"
+
+[packages]
 google-api-python-client = "*"
 google-auth-httplib2 = "*"
 google-auth-oauthlib = "*"
@@ -12,13 +20,7 @@ google-cloud-bigquery = "*"
 google-cloud-storage = "*"
 google-cloud-logging = "*"
 importlib_resources = "*"
-mock = "==3.0.5"
-mockito = "==1.1.1"
-pre-commit = "*"
 pyjson = "*"
-pytest = "==5.0.1"
-pytest-cov = "==2.7.1"
-pytest-mock = "==1.10.4"
 pyyaml = "*"
 requests = "==2.22.0"
 retry = "*"
