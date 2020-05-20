@@ -35,6 +35,3 @@ google-cloud-firestore = "*"
 
 [requires]
 python_version = "3.7"
-
-[dev-packages]
-v = {editable = true,version = "*"}
