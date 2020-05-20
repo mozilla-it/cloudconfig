@@ -101,24 +101,24 @@ def secrets_polling_interval(self, secrets_polling_interval):
 @when("we read property {prop}")
 def we_read_property(self, prop):
     global test_key, test_value
-    Env.initialize(dpm_service_name=self.service_name, dpm_program_name=self.program_name,
-                   secrets_name=self.secrets_name, secrets_polling_interval=int(self.secrets_polling_interval),
-                   project=self.project)
+    Env(dpm_service_name=self.service_name, dpm_program_name=self.program_name,
+        secrets_name=self.secrets_name, secrets_polling_interval=int(self.secrets_polling_interval),
+        project=self.project)
 
     try:
-        Env.dpm_client.properties = {test_key: json.loads(test_value)}
+        Env.InnerEnv._dpm_instance.properties = {test_key: json.loads(test_value)}
     except:
-        Env.dpm_client.properties = {test_key: test_value}
+        Env.InnerEnv._dpm_instance.properties = {test_key: test_value}
 
-    self.result = Env.get_property(prop)
+    self.result = Env().get_instance().get_property(prop)
 
 
 @when("we read secret {secret}")
 def we_read_secret(self, secret):
-    Env.initialize(dpm_service_name=self.service_name, dpm_program_name=self.program_name,
-                   secrets_name=self.secrets_name, secrets_polling_interval=int(self.secrets_polling_interval),
-                   project=self.project)
-    self.result = Env.get_secret(secret)
+    Env(dpm_service_name=self.service_name, dpm_program_name=self.program_name,
+        secrets_name=self.secrets_name, secrets_polling_interval=int(self.secrets_polling_interval),
+        project=self.project)
+    self.result = Env().get_instance().get_secret(secret)
 
 
 @then("we get val {result}")
@@ -130,8 +130,8 @@ def we_get_val(self, result):
 def testing(context):
     counter = 0
     while True:
-        property_value = Env.get_property("USD")
-        secret_value = Env.get_secret("name")
+        property_value = Env().get_instance().get_property("USD")
+        secret_value = Env().get_instance().get_secret("name")
         counter += 1
         print(f"{counter} : property={property_value} : secret={secret_value}")
         time.sleep(1)
@@ -141,10 +141,10 @@ def testing(context):
 def start(context):
     # Env.initialize(dpm_service_name="data-integrations", dpm_program_name="intacct",
     #        secrets_name="data-integrations-secrets", secrets_polling_interval=10, project="dp2-stage")
-    Env.initialize(dpm_service_name="data-integrations", dpm_program_name="intacct",
-           secrets_name="data-integrations-secrets", secrets_polling_interval=10, project="imposing-union-227917")
+    Env(dpm_service_name="data-integrations", dpm_program_name="intacct",
+        secrets_name="data-integrations-secrets", secrets_polling_interval=10, project="imposing-union-227917")
 
 
 @when("I update {key} = {value}")
 def step_impl(context, key, value):
-    Env.update_property(key, value)
+    Env().get_instance().update_property(key, value)
