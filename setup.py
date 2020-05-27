@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 #]
 
 setup(
-    name="dynamic-property-management-module",
+    name="cloudconfig",
     version="0.0.2",
     description="Dynamic configuration module.",
     python_requires=">=3.4",
