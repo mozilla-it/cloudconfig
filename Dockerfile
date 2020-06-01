@@ -7,7 +7,7 @@ RUN echo deb http://deb.debian.org/debian stable main >> /etc/apt/sources.list &
 
 COPY dpm /workspace/dpm
 COPY bin /workspace/bin
-COPY .secrets.baseline Pipfile.lock Pipfile setup.py /workspace/
+COPY .secrets.baseline pyproject.toml /workspace/
 
 WORKDIR /workspace
 
