@@ -3,6 +3,9 @@ name = "cloudconfig"
 version = "0.1.0"
 description = ""
 authors = ["Bryan Sieber <bsieber@mozilla.com>"]
+packages = [
+    { include = "dpm" }
+]
 
 [[tool.poetry.source]]
 name = "mozilla-it"
