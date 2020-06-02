@@ -1,0 +1,78 @@
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "cloudconfig"
+version = "0.1.0"
+description = ""
+authors = [
+    "Adam Frank <afrank@mozilla.com>",
+    "Bryan Sieber <bsieber@mozilla.com>",
+    "Chris Valaas <cvalaas@mozilla.com>",
+    "Jorge Spiropulo <jspiropulo@mozilla.com>"
+]
+packages = [
+    { include = "dpm" }
+]
+
+[[tool.poetry.source]]
+name = "mozilla-it"
+url = "https://dp2-prod.appspot.com/pypi"
+
+[tool.poetry.dependencies]
+python = ">3.6"
+google-cloud-firestore = "*"
+pyjson = "*"
+pyyaml = "*"
+jsonmerge = "*"
+cloudsecrets = { git = "https://github.com/mozilla-it/cloudsecrets.git", branch = "master" }
+tox = "*"
+
+
+[tool.poetry.dev-dependencies]
+pre-commit = "*"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+isolated_build = True
+envlist = py37
+
+[testenv]
+whitelist_externals =
+    poetry
+deps =
+    pytest
+    pytest-cov
+    pytest-mock
+    mock
+    mockito
+    behave
+commands =
+    poetry run behave dpm/tests/bdd
+"""
+
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
