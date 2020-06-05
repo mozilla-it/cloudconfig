@@ -32,6 +32,7 @@ tox = "*"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "*"
+behave = "*"
 
 [tool.tox]
 legacy_tox_ini = """
