@@ -22,7 +22,7 @@ url = "https://dp2-prod.appspot.com/pypi"
 
 [tool.poetry.dependencies]
 # These packages are mandatory and form the core of this package’s distribution.
-python = ">=3.6"
+python = ">3.6"
 pyjson = "*"
 pyyaml = "*"
 jsonmerge = "*"
