@@ -22,7 +22,7 @@ url = "https://dp2-prod.appspot.com/pypi"
 
 [tool.poetry.dependencies]
 # These packages are mandatory and form the core of this package’s distribution.
-python = ">=3.6"
+python = ">=3.7"
 pyjson = "*"
 pyyaml = "*"
 jsonmerge = "*"
@@ -47,10 +47,10 @@ isolated_build = True
 envlist = py37
 
 [testenv]
-whitelist_externals =
-    poetry
+deps =
+    behave
 commands =
-    poetry run behave dpm/tests/bdd
+    behave dpm/tests/bdd
 """
 
 
