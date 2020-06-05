@@ -23,7 +23,10 @@ class DynamicPropertyManagementClient:
         doc_watch = self.doc_ref.on_snapshot(on_snapshot)
 
     def get_dynamic_properties(self) -> Dict[str, str]:
-        return dict(self.properties)
+        if self.properties:
+            return dict(self.properties)
+        else:
+            return dict()
 
     def update_property(self, key: str, value):
         doc = self.doc_ref.get().to_dict()
