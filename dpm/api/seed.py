@@ -2,7 +2,7 @@ import json
 import os
 import glob
 
-from dpm.api.env import Env
+from .env import Env
 
 
 class DynamicPropertiesSeeder:

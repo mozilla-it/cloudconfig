@@ -1,6 +1,5 @@
 from typing import Dict
-
-import dpm.api.clients
+from . import clients
 import logging
 
 
@@ -10,8 +9,8 @@ class Env:
     dpm_program_name: str = None
     secrets_name: str = None
     secrets_polling_interval: int = 0
-    dpm_client: dpm.api.clients.DynamicPropertyManagementClient = None
-    secrets_client: dpm.api.clients.SecretsClient = None
+    dpm_client: clients.DynamicPropertyManagementClient = None
+    secrets_client: clients.SecretsClient = None
     dpm_initialized: bool = False
     secrets_initialized: bool = False
 
@@ -22,14 +21,14 @@ class Env:
         # Setting up dynamic properties
         Env.dpm_service_name = dpm_service_name
         Env.dpm_program_name = dpm_program_name
-        Env.dpm_client = dpm.api.clients.DynamicPropertyManagementClient(
+        Env.dpm_client = clients.DynamicPropertyManagementClient(
             service_name=dpm_service_name, program_name=dpm_program_name)
         Env.dpm_initialized = True
 
         # Setting up secrets manager
         if secrets_name is not None and project is not None:
             Env.secrets_name = secrets_name
-            Env.secrets_client = dpm.api.clients.SecretsClient(secrets_name=secrets_name, polling_interval=secrets_polling_interval, project=project)
+            Env.secrets_client = clients.SecretsClient(secrets_name=secrets_name, polling_interval=secrets_polling_interval, project=project)
             Env.secrets_initialized = True
             Env.logger.info(f"Initializing with dpm_service_name={dpm_service_name}, "
                             f"dpm_program_name={dpm_program_name}, "
