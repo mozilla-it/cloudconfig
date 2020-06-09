@@ -21,17 +21,24 @@ name = "mozilla-it"
 url = "https://dp2-prod.appspot.com/pypi"
 
 [tool.poetry.dependencies]
-python = ">3.6"
-google-cloud-firestore = "*"
+# These packages are mandatory and form the core of this package’s distribution.
+python = ">=3.7"
 pyjson = "*"
 pyyaml = "*"
 jsonmerge = "*"
+google-cloud-firestore = "*"
 cloudsecrets = { git = "https://github.com/mozilla-it/cloudsecrets.git", branch = "master" }
-tox = "*"
-
 
 [tool.poetry.dev-dependencies]
 pre-commit = "*"
+tox = "*"
+behave = "*"
+sphinx = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+mock = "*"
+mockito = "*"
 
 [tool.tox]
 legacy_tox_ini = """
@@ -40,17 +47,10 @@ isolated_build = True
 envlist = py37
 
 [testenv]
-whitelist_externals =
-    poetry
 deps =
-    pytest
-    pytest-cov
-    pytest-mock
-    mock
-    mockito
     behave
 commands =
-    poetry run behave dpm/tests/bdd
+    behave dpm/tests/bdd
 """
 
 
