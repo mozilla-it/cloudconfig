@@ -4,7 +4,7 @@ build-backend = "poetry.masonry.api"
 
 [tool.poetry]
 name = "cloudconfig"
-version = "0.1.1"
+version = "0.1.2"
 description = ""
 authors = [
     "Adam Frank <afrank@mozilla.com>",
