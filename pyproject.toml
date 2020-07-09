@@ -28,6 +28,8 @@ pyyaml = "*"
 jsonmerge = "*"
 google-cloud-firestore = "*"
 cloudsecrets = { git = "https://github.com/mozilla-it/cloudsecrets.git", branch = "master" }
+python3-protobuf = "^2.5.0"
+protobuf = "^3.12.2"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "*"

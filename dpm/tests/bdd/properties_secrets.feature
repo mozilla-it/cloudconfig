@@ -1,6 +1,8 @@
-# Created by jspiropulo at 3/19/20
-Feature: Read properties from GCP secrets manager
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+Feature: Read properties from GCP secrets manager
   Background: run mocks
     Given mocks
     Given service_name is data-integrations
@@ -25,12 +27,6 @@ Feature: Read properties from GCP secrets manager
     When we read property user_agent
     Then we get val pyintacct-0.0.8
 
-#  Scenario: Update property "user_agent"
-#    Given this exists user_agent = pyintacct-0.0.8
-#    When I update user_agent = pyintacct
-#    When we read property user_agent
-#    Then we get val pyintacct
-
   Scenario: Get secret "intacct_secret"
     Given this exists intacct_secret = GGJHGJHIUY
     When we read secret intacct_secret
@@ -40,9 +36,3 @@ Feature: Read properties from GCP secrets manager
     Given this exists json_secret = {"value": "GGJHGJHIUY"}
     When we read secret json_secret
     Then we get val {"value": "GGJHGJHIUY"}
-
-
-#  Scenario: test
-#    Given I start
-#    Given I update USD with 1
-#    Given test this
