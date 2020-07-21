@@ -22,12 +22,13 @@ url = "https://dp2-prod.appspot.com/pypi"
 
 [tool.poetry.dependencies]
 # These packages are mandatory and form the core of this package’s distribution.
-python = ">=3.7"
+python = ">=3.7,<4"
 pyjson = "*"
 pyyaml = "*"
 jsonmerge = "*"
 google-cloud-firestore = "*"
 cloudsecrets = { git = "https://github.com/mozilla-it/cloudsecrets.git", branch = "master" }
+coverage = "^5.2"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "*"
@@ -49,8 +50,10 @@ envlist = py37
 [testenv]
 deps =
     behave
+    coverage
 commands =
-    behave dpm/tests/bdd
+    coverage run --branch -m behave dpm/tests/bdd
+    coverage report -m --fail-under 63
 """
 
 
