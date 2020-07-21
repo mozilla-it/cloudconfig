@@ -7,13 +7,3 @@ omit =
     */tests/*
     */.venv/*
     */.tox/*
-
-[report]
-omit =
-    # omit anything in a .local directory anywhere
-    */.local/*
-    # omit everything in /usr
-    /usr/*
-    */tests/*
-    */.venv/*
-    */.tox/*
