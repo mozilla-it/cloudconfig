@@ -1,7 +1,7 @@
 FROM python:3
 
 COPY dpm /workspace/dpm
-COPY .secrets.baseline pyproject.toml /workspace/
+COPY .coveragerc .secrets.baseline pyproject.toml /workspace/
 
 WORKDIR /workspace
 
