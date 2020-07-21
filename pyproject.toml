@@ -53,7 +53,7 @@ deps =
     coverage
 commands =
     coverage run --branch -m behave dpm/tests/bdd
-    coverage report --omit ".tox/*" -m --fail-under 63
+    coverage report -m --fail-under 63
 """
 
 
