@@ -1,6 +1,7 @@
-from typing import Dict
-from . import clients
 import logging
+from typing import Dict
+
+from . import clients
 
 
 class Env:
@@ -28,7 +29,8 @@ class Env:
         # Setting up secrets manager
         if secrets_name is not None and project is not None:
             Env.secrets_name = secrets_name
-            Env.secrets_client = clients.SecretsClient(secrets_name=secrets_name, polling_interval=secrets_polling_interval, project=project)
+            Env.secrets_client = clients.SecretsClient(secrets_name=secrets_name,
+                                                       polling_interval=secrets_polling_interval, project=project)
             Env.secrets_initialized = True
             Env.logger.info(f"Initializing with dpm_service_name={dpm_service_name}, "
                             f"dpm_program_name={dpm_program_name}, "

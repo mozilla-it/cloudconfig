@@ -19,8 +19,7 @@ def test_dynamic_property_seeder(monkeypatch):
     monkeypatch.setattr(dpm.api.seed.Env, "insert_property", mock_insert)
 
     seeder = DynamicPropertiesSeeder(
-        "prod", "dpm_service_name", "dpm/tests/resource/dynamic-properties-seed/"
-    )
+        "prod", "dpm_service_name", "dpm/tests/resource/dynamic-properties-seed/", "partner_a")
     seeder.execute()
     # print(test_props)
     assert test_props == json.loads(

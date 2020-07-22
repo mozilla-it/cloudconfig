@@ -1,6 +1,5 @@
-import json
-import os
 import glob
+import json
 
 from .env import Env
 
