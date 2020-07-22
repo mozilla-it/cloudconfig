@@ -59,7 +59,7 @@ commands =
     coverage run --branch -m behave dpm/tests/bdd
     coverage run -a --branch -m pytest
     coverage html
-    coverage report -m --fail-under 81
+    coverage report -m --fail-under 95
 """
 
 
