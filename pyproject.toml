@@ -28,7 +28,7 @@ pyyaml = "*"
 jsonmerge = "*"
 google-cloud-firestore = "*"
 cloudsecrets = { git = "https://github.com/mozilla-it/cloudsecrets.git", branch = "master" }
-coverage = "^5.2"
+botocore = "^1.17.25" # without this, `poetry update` runs forever on my box
 
 [tool.poetry.dev-dependencies]
 pre-commit = "*"
@@ -40,6 +40,8 @@ pytest-cov = "*"
 pytest-mock = "*"
 mock = "*"
 mockito = "*"
+coverage = "^5.2"
+mock-firestore = "^0.7.1"
 
 [tool.tox]
 legacy_tox_ini = """
@@ -51,9 +53,13 @@ envlist = py37
 deps =
     behave
     coverage
+    pytest
+    mock-firestore
 commands =
     coverage run --branch -m behave dpm/tests/bdd
-    coverage report -m --fail-under 63
+    coverage run -a --branch -m pytest
+    coverage html
+    coverage report -m --fail-under 81
 """
 
 
