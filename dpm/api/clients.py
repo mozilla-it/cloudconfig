@@ -42,13 +42,14 @@ class DynamicPropertyManagementClient:
 
 
 class SecretsClient:
-
     def __init__(self, secrets_name: str, project: str, polling_interval: int = 0):
         self.secrets_name = secrets_name
         self.polling_interval = polling_interval
         if not self.secrets_name:
-            raise Exception("Error: must secret_name")
-        self.secrets = cloudsecrets.gcp.Secrets(self.secrets_name, polling_interval=self.polling_interval, project=project)
+            raise Exception("Error: must have secret_name")
+        self.secrets = cloudsecrets.gcp.Secrets(
+            self.secrets_name, polling_interval=self.polling_interval, project=project
+        )
 
     def get_secret(self, key: str) -> str:
         return dict(self.secrets).get(key)
