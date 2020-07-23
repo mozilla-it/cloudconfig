@@ -24,6 +24,6 @@ jobs:
       with:
         #token: ${{ secrets.CODECOV_TOKEN }}
         #file: ./reports/.coverage
-        file: ./reports/coverage.xml
+        file: ./coverage.xml
         env_vars: OS,PYTHON
         name: codecov-cloudconfig
