@@ -1,7 +1,7 @@
 import glob
 import json
-import os
-from .env import Env
+
+import dpm.api.env as config
 
 
 class DynamicPropertiesSeeder:
@@ -13,8 +13,8 @@ class DynamicPropertiesSeeder:
 
     def execute(self):
         for filename in glob.glob(f"{self.seeds_path}/{self.env}/*.json"):
-            Env.initialize(dpm_service_name=self.dpm_service_name, dpm_program_name=self.dpm_program_name)
+            config.Env.initialize(dpm_service_name=self.dpm_service_name, dpm_program_name=self.dpm_program_name)
             content = json.loads(open(filename).read())
             keys = content.keys()
             for key in keys:
-                Env.insert_property(key, content[key])
+                config.Env.insert_property(key, content[key])
