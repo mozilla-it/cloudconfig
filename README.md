@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/mozilla-it/cloudconfig/branch/master/graph/badge.svg)](https://codecov.io/gh/mozilla-it/cloudconfig)
+
 # How to install
 
 For pipenv
@@ -17,13 +19,13 @@ These environmental variables must be set.
 # Example Usage
 
 ```
-**[Initialization should only happen once. The polling 
+**[Initialization should only happen once. The polling
 values will determine if additional polls will be performed.]**
 Env.initialize(
-               dpm_service_name = <service name/>, 
+               dpm_service_name = <service name/>,
                dpm_program_name = <program_name/>,
                dpm_polling_interval = <dpm_polling_interval/>,  # IGNORED in the Firestore impl
-               secrets_name = <secrets_name/>, 
+               secrets_name = <secrets_name/>,
                secrets_polling_interval = <secrets_polling_interval/>,
                project = <project/>
               )
