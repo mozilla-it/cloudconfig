@@ -5,4 +5,4 @@ Feature: Loads properties when invoked
     Given directory with seed data dpm/tests/resource/dynamic-properties-seed
     Given env prod
     Given seeding service test_service
-#    When we run seeding
+    When we run seeding intacct
