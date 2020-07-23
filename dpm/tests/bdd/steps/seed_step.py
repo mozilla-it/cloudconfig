@@ -18,7 +18,7 @@ def step_impl(self, service):
     self.service = service
 
 
-@when("we run seeding")
-def run(self):
-    seeder = DynamicPropertiesSeeder(self.env, self.service, self.path)
+@when("we run seeding {program_name}")
+def run(self, program_name):
+    seeder = DynamicPropertiesSeeder(self.env, self.service, self.path, dpm_program_name=program_name)
     seeder.execute()
