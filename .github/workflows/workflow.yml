@@ -1,0 +1,29 @@
+name: Codecov for cloudconfig
+on: [push]
+jobs:
+  run:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    env:
+      OS: ${{ matrix.os }}
+      PYTHON: '3.7'
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Python
+      uses: actions/setup-python@master
+      with:
+        python-version: 3.7
+    - name: Generate coverage report
+      run: |
+        pip install tox
+        tox
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        #token: ${{ secrets.CODECOV_TOKEN }}
+        #file: ./reports/.coverage
+        file: ./coverage.xml
+        env_vars: OS,PYTHON
+        name: codecov-cloudconfig
