@@ -1,5 +1,6 @@
+import os
 import time
-from typing import List
+from typing import List, Dict
 from unittest.mock import Mock
 import base64
 from behave import *
@@ -46,8 +47,17 @@ class SecretManagerServiceClientMock(Mock):
 
 
 class DocumentMock(Mock):
+    properties = None
     def on_snapshot(self, v):
         return Mock()
+
+    def set(self, props: dict, merge: bool = True):
+        if DocumentMock.properties is None:
+            DocumentMock.properties = dict()
+        DocumentMock.properties.update(props)
+
+    def to_dict(self) -> Dict:
+        return DocumentMock.properties
 
 
 class FirestoreClientMock(Mock):
@@ -86,6 +96,7 @@ def secrets_name(self, secrets_name):
 @step("project is {project}")
 def project(self, project):
     self.project = project
+    os.environ["PROJECT"] = project
 
 
 @step("dpm_polling_interval is {dpm_polling_interval}")
