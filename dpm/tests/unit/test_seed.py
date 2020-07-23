@@ -1,27 +1,18 @@
 import json
+import unittest
+
+import dpm.api.env as config
+from dpm.api.seed import DynamicPropertiesSeeder
+from dpm.tests.mocks import MockEnv
 
 
-def test_dynamic_property_seeder(monkeypatch):
-    import dpm.api.seed
-    from dpm.api.seed import DynamicPropertiesSeeder
+class DynamicPropertiesSeederTest(unittest.TestCase):
 
-    test_props = {}
+    def test_dynamic_property_seeder(context):
+        config.Env = MockEnv()
+        under_test = DynamicPropertiesSeeder(
+            "prod", "dpm_service_name", "dpm/tests/resource/dynamic-properties-seed/", "partner_a"
+        )
+        under_test.execute()
 
-    def mock_initialize(*args, **kwargs):
-        return None
-
-    def mock_insert(*args, **kwargs):
-        # global test_props
-        test_props[args[0]] = args[1]
-
-    monkeypatch.setattr(dpm.api.seed.Env, "initialize", mock_initialize)
-    monkeypatch.setattr(dpm.api.seed.Env, "insert_property", mock_insert)
-
-    seeder = DynamicPropertiesSeeder(
-        "prod", "dpm_service_name", "dpm/tests/resource/dynamic-properties-seed/", "partner_a"
-    )
-    seeder.execute()
-    # print(test_props)
-    assert test_props == json.loads(
-        open("dpm/tests/resource/dynamic-properties-seed/prod/partner_a.json").read()
-    )
+        assert MockEnv.doc_data == json.loads(open("dpm/tests/resource/dynamic-properties-seed/prod/partner_a.json").read())
