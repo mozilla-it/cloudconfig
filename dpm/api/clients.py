@@ -19,6 +19,10 @@ class DynamicPropertyManagementClient:
         self.doc_path = f"dpm-configs/{self.service}-{self.program}"
         self.firestore_client = firestore.Client()
         self.doc_ref = self.firestore_client.document(self.doc_path)
+
+        if self.doc_ref.get().exists is False:
+            self.doc_ref.set({})
+
         self.properties = self.doc_ref.get().to_dict()
         doc_watch = self.doc_ref.on_snapshot(on_snapshot)
 
