@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from unittest import mock
 
@@ -21,6 +23,13 @@ def test_Env(monkeypatch):
     assert environment != None
     assert environment.dpm_initialized
     assert not environment.secrets_initialized
+
+    _environ = dict(os.environ)
+    environment.dpm_initialized = True
+    environment.to_env()
+    assert "fake_key" in os.environ
+    os.environ.clear()
+    os.environ.update(_environ)
 
     # uninitialized call to get_property throws exception
     environment.dpm_initialized = False

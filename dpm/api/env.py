@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import logging
+import os
 from typing import Dict
 
 from . import clients
@@ -97,3 +98,14 @@ class Env:
                 "You must invoke initialize with the appropriate parameters"
             )
         return self.secrets_client.get_secret(key)
+
+    def to_env(self):
+        import json
+
+        properties = self.dpm_client.get_dynamic_properties()
+        for k, v in properties.items():
+            if isinstance(v, dict):
+                for _, v in v.items():
+                    os.environ[k] = v
+            else:
+                os.environ[k] = v
