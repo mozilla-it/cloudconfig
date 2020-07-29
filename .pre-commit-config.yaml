@@ -4,7 +4,6 @@ repos:
     hooks:
     -   id: check-added-large-files
     -   id: check-json
-    -   id: detect-private-key
     -   id: end-of-file-fixer
     -   id: pretty-format-json
         args: [
@@ -12,7 +11,6 @@ repos:
           '--indent', '4',
           '--no-sort-keys',
         ]
-#    -   id: requirements-txt-fixer
     -   id: trailing-whitespace
 -   repo: meta
     hooks:
@@ -43,5 +41,4 @@ repos:
     rev: v0.13.0
     hooks:
     -   id: detect-secrets
-        #exclude: "poetry.lock"
         args: ['--baseline', '.secrets.baseline']

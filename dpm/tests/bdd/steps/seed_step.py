@@ -1,4 +1,8 @@
-from behave import *
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+from behave import given, when
 
 from dpm.api.seed import DynamicPropertiesSeeder
 
@@ -20,5 +24,7 @@ def step_impl(self, service):
 
 @when("we run seeding {program_name}")
 def run(self, program_name):
-    seeder = DynamicPropertiesSeeder(self.env, self.service, self.path, dpm_program_name=program_name)
+    seeder = DynamicPropertiesSeeder(
+        self.env, self.service, self.path, dpm_program_name=program_name
+    )
     seeder.execute()

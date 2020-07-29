@@ -17,44 +17,44 @@ def test_Env(monkeypatch):
         dpm.api.env.clients, "DynamicPropertyManagementClient", mock_clients
     )
     monkeypatch.setattr(dpm.api.env.clients, "SecretsClient", mock_clients)
-
-    assert Env.initialize("something", "something") == None
-    assert Env.dpm_initialized
-    assert not Env.secrets_initialized
+    environment = Env("something", "something")
+    assert environment != None
+    assert environment.dpm_initialized
+    assert not environment.secrets_initialized
 
     # uninitialized call to get_property throws exception
-    Env.dpm_initialized = False
+    environment.dpm_initialized = False
     with pytest.raises(Exception):
-        assert Env.get_property("something")
+        assert environment.get_property("something")
 
     # initialized call to get_property but with absent key throws exception
-    Env.dpm_initialized = True
+    environment.dpm_initialized = True
     with pytest.raises(Exception):
-        assert Env.get_property("something")
+        assert environment.get_property("something")
 
     # initialized call to get_property but with key is fine
-    Env.dpm_initialized = True
-    assert Env.get_property("fake_key") == {"prop_hash": "fake_value"}
+    environment.dpm_initialized = True
+    assert environment.get_property("fake_key") == {"prop_hash": "fake_value"}
 
     # uninitialized call to update_property throws exception
-    Env.dpm_initialized = False
+    environment.dpm_initialized = False
     with pytest.raises(Exception):
-        assert Env.update_property("key", "value")
+        assert environment.update_property("key", "value")
 
     # initialized call to update_property is fine
-    Env.dpm_initialized = True
-    assert Env.update_property("key", "value") == None
+    environment.dpm_initialized = True
+    assert environment.update_property("key", "value") == None
 
     # uninitialized call to insert_property throws exception
-    Env.dpm_initialized = False
+    environment.dpm_initialized = False
     with pytest.raises(Exception):
-        assert Env.insert_property("key", "value")
+        assert environment.insert_property("key", "value")
 
     # initialized call to insert_property is fine
-    Env.dpm_initialized = True
-    assert Env.insert_property("key", "value") == None
+    environment.dpm_initialized = True
+    assert environment.insert_property("key", "value") == None
 
     # uninitialized call to get_secret throws exception
-    Env.secrets_initialized = False
+    environment.secrets_initialized = False
     with pytest.raises(Exception):
-        assert Env.get_secret("key")
+        assert environment.get_secret("key")

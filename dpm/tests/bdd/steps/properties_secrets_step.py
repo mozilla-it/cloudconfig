@@ -1,8 +1,12 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 import time
 from typing import List
 from unittest.mock import Mock
 import base64
-from behave import *
+from behave import step, given, when, then
 from dpm.api.env import Env
 from google.cloud import secretmanager
 import json
@@ -10,6 +14,7 @@ from google.cloud import firestore
 
 test_key: str = None
 test_value: str = None
+environment: Env = None
 
 
 class MockObj(List):
@@ -19,7 +24,7 @@ class MockObj(List):
 class MockData:
     def __init__(self):
         global test_key, test_value
-        val = base64.b64encode(test_value.encode('ascii'))
+        val = base64.b64encode(test_value.encode("ascii"))
         vdict = {test_key: val.decode()}
         val1 = json.dumps(vdict)
         self.data = val1.encode("utf-8")
@@ -32,9 +37,6 @@ class MockX:
 
 
 class SecretManagerServiceClientMock(Mock):
-    def list_secret_versions(self, x):
-        return list(list(MockObj()))
-
     def secret_path(self, x, y):
         return Mock()
 
@@ -62,7 +64,7 @@ def mocks(context):
 
 
 @given("this exists {key} = {val}")
-def step_impl(context, key, val):
+def key_value_exists(context, key, val):
     global test_key, test_value
     test_key = key
     test_value = val
@@ -100,25 +102,34 @@ def secrets_polling_interval(self, secrets_polling_interval):
 
 @when("we read property {prop}")
 def we_read_property(self, prop):
-    global test_key, test_value
-    Env.initialize(dpm_service_name=self.service_name, dpm_program_name=self.program_name,
-                   secrets_name=self.secrets_name, secrets_polling_interval=int(self.secrets_polling_interval),
-                   project=self.project)
+    global test_key, test_value, env
+    environment = Env(
+        dpm_service_name=self.service_name,
+        dpm_program_name=self.program_name,
+        secrets_name=self.secrets_name,
+        secrets_polling_interval=int(self.secrets_polling_interval),
+        project=self.project,
+    )
 
     try:
-        Env.dpm_client.properties = {test_key: json.loads(test_value)}
+        environment.dpm_client.properties = {test_key: json.loads(test_value)}
     except:
-        Env.dpm_client.properties = {test_key: test_value}
+        environment.dpm_client.properties = {test_key: test_value}
 
-    self.result = Env.get_property(prop)
+    self.result = environment.get_property(prop)
 
 
 @when("we read secret {secret}")
 def we_read_secret(self, secret):
-    Env.initialize(dpm_service_name=self.service_name, dpm_program_name=self.program_name,
-                   secrets_name=self.secrets_name, secrets_polling_interval=int(self.secrets_polling_interval),
-                   project=self.project)
-    self.result = Env.get_secret(secret)
+    global environment
+    environment = Env(
+        dpm_service_name=self.service_name,
+        dpm_program_name=self.program_name,
+        secrets_name=self.secrets_name,
+        secrets_polling_interval=int(self.secrets_polling_interval),
+        project=self.project,
+    )
+    self.result = environment.get_secret(secret)
 
 
 @then("we get val {result}")
@@ -128,10 +139,11 @@ def we_get_val(self, result):
 
 @given("test this")
 def testing(context):
+    global environment
     counter = 0
     while True:
-        property_value = Env.get_property("USD")
-        secret_value = Env.get_secret("name")
+        property_value = environment.get_property("USD")
+        secret_value = environment.get_secret("name")
         counter += 1
         print(f"{counter} : property={property_value} : secret={secret_value}")
         time.sleep(1)
@@ -139,12 +151,17 @@ def testing(context):
 
 @given("I start")
 def start(context):
-    # Env.initialize(dpm_service_name="data-integrations", dpm_program_name="intacct",
-    #        secrets_name="data-integrations-secrets", secrets_polling_interval=10, project="dp2-stage")
-    Env.initialize(dpm_service_name="data-integrations", dpm_program_name="intacct",
-           secrets_name="data-integrations-secrets", secrets_polling_interval=10, project="imposing-union-227917")
+    global environment
+    environment = Env(
+        dpm_service_name="data-integrations",
+        dpm_program_name="intacct",
+        secrets_name="data-integrations-secrets",
+        secrets_polling_interval=10,
+        project="imposing-union-227917",
+    )
 
 
 @when("I update {key} = {value}")
 def step_impl(context, key, value):
-    Env.update_property(key, value)
+    global environment
+    environment.update_property(key, value)

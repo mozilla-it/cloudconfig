@@ -1,3 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 from typing import Dict
 import cloudsecrets.gcp
 from google.cloud import firestore
@@ -24,7 +28,7 @@ class DynamicPropertyManagementClient:
             self.doc_ref.set({})
 
         self.properties = self.doc_ref.get().to_dict()
-        doc_watch = self.doc_ref.on_snapshot(on_snapshot)
+        self.doc_ref.on_snapshot(on_snapshot)
 
     def get_dynamic_properties(self) -> Dict[str, str]:
         if self.properties:
