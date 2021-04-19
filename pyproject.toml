@@ -42,7 +42,6 @@ mock = "*"
 mockito = "*"
 coverage = "^5.2"
 mock-firestore = "*"
-#mock-firestore = "^0.7.1"
 
 [tool.tox]
 legacy_tox_ini = """
