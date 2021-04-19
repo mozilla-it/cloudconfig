@@ -4,7 +4,7 @@ build-backend = "poetry.masonry.api"
 
 [tool.poetry]
 name = "cloudconfig"
-version = "0.1.8"
+version = "0.2.0"
 description = ""
 authors = [
     "Adam Frank <afrank@mozilla.com>",
@@ -26,10 +26,9 @@ python = ">=3.7,<4"
 pyjson = "*"
 pyyaml = "*"
 jsonmerge = "*"
-google-cloud-firestore = "1.7.0" # possible error in 1.8.+
-google-cloud-core = "1.3.0" # possible error in g-c-c 1.4.0, so pinning previous ver
-cloudsecrets = { git = "https://github.com/mozilla-it/cloudsecrets.git", branch = "master" }
-botocore = "^1.17.25" # without this, `poetry update` runs forever on my box
+google-cloud-firestore = "^1.9.0"
+google-cloud-core = "^1.6.0"
+cloudsecrets-gcp = { git = "https://github.com/mozilla-it/cloudsecrets-gcp.git", branch = "main" }
 
 [tool.poetry.dev-dependencies]
 pre-commit = "*"
@@ -42,7 +41,8 @@ pytest-mock = "*"
 mock = "*"
 mockito = "*"
 coverage = "^5.2"
-mock-firestore = "^0.7.1"
+mock-firestore = "*"
+#mock-firestore = "^0.7.1"
 
 [tool.tox]
 legacy_tox_ini = """
