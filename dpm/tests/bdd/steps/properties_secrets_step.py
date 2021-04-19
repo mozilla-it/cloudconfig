@@ -19,7 +19,7 @@ class MockObj(List):
 class MockData:
     def __init__(self):
         global test_key, test_value
-        val = base64.b64encode(test_value.encode('ascii'))
+        val = base64.b64encode(test_value.encode("ascii"))
         vdict = {test_key: val.decode()}
         val1 = json.dumps(vdict)
         self.data = val1.encode("utf-8")
@@ -32,16 +32,16 @@ class MockX:
 
 
 class SecretManagerServiceClientMock(Mock):
-    def list_secret_versions(self, x):
+    def list_secret_versions(self, request):
         return list(list(MockObj()))
 
     def secret_path(self, x, y):
         return Mock()
 
-    def list_secret_versions(self, x):
+    def list_secret_versions(self, request):
         return [MockX()]
 
-    def access_secret_version(self, p):
+    def access_secret_version(self, request):
         return MockX()
 
 
@@ -101,9 +101,13 @@ def secrets_polling_interval(self, secrets_polling_interval):
 @when("we read property {prop}")
 def we_read_property(self, prop):
     global test_key, test_value
-    Env.initialize(dpm_service_name=self.service_name, dpm_program_name=self.program_name,
-                   secrets_name=self.secrets_name, secrets_polling_interval=int(self.secrets_polling_interval),
-                   project=self.project)
+    Env.initialize(
+        dpm_service_name=self.service_name,
+        dpm_program_name=self.program_name,
+        secrets_name=self.secrets_name,
+        secrets_polling_interval=int(self.secrets_polling_interval),
+        project=self.project,
+    )
 
     try:
         Env.dpm_client.properties = {test_key: json.loads(test_value)}
@@ -115,9 +119,13 @@ def we_read_property(self, prop):
 
 @when("we read secret {secret}")
 def we_read_secret(self, secret):
-    Env.initialize(dpm_service_name=self.service_name, dpm_program_name=self.program_name,
-                   secrets_name=self.secrets_name, secrets_polling_interval=int(self.secrets_polling_interval),
-                   project=self.project)
+    Env.initialize(
+        dpm_service_name=self.service_name,
+        dpm_program_name=self.program_name,
+        secrets_name=self.secrets_name,
+        secrets_polling_interval=int(self.secrets_polling_interval),
+        project=self.project,
+    )
     self.result = Env.get_secret(secret)
 
 
@@ -141,8 +149,13 @@ def testing(context):
 def start(context):
     # Env.initialize(dpm_service_name="data-integrations", dpm_program_name="intacct",
     #        secrets_name="data-integrations-secrets", secrets_polling_interval=10, project="dp2-stage")
-    Env.initialize(dpm_service_name="data-integrations", dpm_program_name="intacct",
-           secrets_name="data-integrations-secrets", secrets_polling_interval=10, project="imposing-union-227917")
+    Env.initialize(
+        dpm_service_name="data-integrations",
+        dpm_program_name="intacct",
+        secrets_name="data-integrations-secrets",
+        secrets_polling_interval=10,
+        project="imposing-union-227917",
+    )
 
 
 @when("I update {key} = {value}")
