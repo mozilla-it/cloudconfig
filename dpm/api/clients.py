@@ -1,5 +1,5 @@
 from typing import Dict
-import cloudsecrets.gcp
+import cloudsecrets_gcp.gcp
 from google.cloud import firestore
 
 
@@ -51,7 +51,7 @@ class SecretsClient:
         self.polling_interval = polling_interval
         if not self.secrets_name:
             raise Exception("Error: must have secret_name")
-        self.secrets = cloudsecrets.gcp.Secrets(
+        self.secrets = cloudsecrets_gcp.gcp.Secrets(
             self.secrets_name, polling_interval=self.polling_interval, project=project
         )
 
